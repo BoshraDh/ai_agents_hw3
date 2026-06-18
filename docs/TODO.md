@@ -45,11 +45,18 @@
   - Created `requirements.txt` (crewai, crewai-tools, openai, anthropic, langchain, python-dotenv, pypdf)
   - Created `.env.example` with placeholders for all required API keys
   - Copy `.env.example` → `.env` and fill in your keys before running
-- [ ] **First execution and testing** ← next pending task
-  - `python -m venv .venv && .venv\Scripts\activate`
+- [ ] **First execution and testing** ← pending (ready to run)
+  - `python -m venv .venv`
+  - `.venv\Scripts\activate`
   - `pip install -r requirements.txt`
   - Copy `.env.example` to `.env` and set `OPENAI_API_KEY`
-  - Run `python src/main.py` and verify all output files are generated
+  - Run `python src/main.py` from the project root
+- [ ] **Validate output/crew_result.md** ← next step after first run
+  - Confirm `output/research_notes.md` was created by the Researcher Agent
+  - Confirm `output/paper.md` was created by the Writer Agent and approved by the Reviewer
+  - Confirm `output/references.bib` contains ≥ 5 BibTeX entries
+  - Confirm `output/crew_result.md` contains the final crew summary
+  - Check `output/paper.md` ends with `## REVIEWER APPROVAL: APPROVED FOR LATEX CONVERSION`
 - [ ] Test pipeline on a short sample topic
 - [ ] Run full pipeline: LangGraph vs CrewAI paper
 - [ ] Verify all PRD requirements met in output PDF

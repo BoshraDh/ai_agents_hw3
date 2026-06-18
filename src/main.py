@@ -1,5 +1,14 @@
 import os
+import sys
 from pathlib import Path
+
+# Ensure src/ is on the path so agents/tasks import correctly
+# regardless of the working directory the script is launched from.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# Also fix CWD to the project root so relative output_file paths
+# in tasks.py resolve to <project>/output/ correctly.
+os.chdir(Path(__file__).resolve().parent.parent)
 
 from dotenv import load_dotenv
 from crewai import Crew, Process
