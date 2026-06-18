@@ -1,35 +1,102 @@
 # Project Plan
 
-## Workflow: Sequential Agent Pipeline
-
-The paper is produced through a four-stage sequential workflow, each stage handled by a dedicated CrewAI agent.
+## Workflow: Four-Stage Sequential Agent Pipeline
 
 ```
-Research -> Markdown -> LaTeX -> PDF
+Step A: Researcher Agent
+        ↓
+Step B: Writer Agent
+        ↓
+Step C: Reviewer Agent
+        ↓
+Step D: LaTeX + PDF Compiler
 ```
 
-### Stage 1: Research
+---
 
-- Agent collects and synthesizes information on LangGraph and CrewAI
-- Output: structured research notes and citations
+## Step A: Researcher Agent
 
-### Stage 2: Markdown
+**Role:** Senior AI Research Analyst
+**Goal:** Gather and synthesize comprehensive information on LangGraph and CrewAI.
 
-- Agent drafts the full academic paper in Markdown format
-- Sections: Abstract, Introduction, Background, Comparison, Conclusion, References
-- Output: `output/paper.md`
+**Output:**
+- Structured research notes covering: architecture, API design, tooling, use cases, performance
+- At least 5 BibTeX-ready citations
+- Draft data for the comparison table and the graph
+- A candidate mathematical formula (e.g., agent coordination overhead, complexity)
 
-### Stage 3: LaTeX
+**Tools:** WebSearch, file write
 
-- Agent converts the Markdown draft to a properly formatted LaTeX document
-- Applies academic paper template (article class)
-- Output: `output/paper.tex`
+---
 
-### Stage 4: PDF
+## Step B: Writer Agent
 
-- Agent compiles the LaTeX source to a PDF
-- Output: `output/paper.pdf`
+**Role:** Academic Technical Writer
+**Goal:** Produce the full Markdown draft of the paper with all required structural elements.
 
-## Dependencies
+**Output: `output/paper.md`**
 
-Each stage depends on the successful completion of the previous stage (strict sequential chain).
+Required sections and elements:
+- Cover sheet (title, course, lecturer, semester, student name)
+- Table of Contents
+- Abstract
+- Introduction
+- Background: LangGraph
+- Background: CrewAI
+- Comparative Analysis (includes table)
+- Performance & Complexity (includes mathematical formula)
+- Architecture Diagram (image placeholder with caption)
+- Comparison Chart (graph data / placeholder)
+- Discussion
+- Conclusion
+- References (BibTeX keys)
+
+**Also produces:** `output/references.bib`
+
+---
+
+## Step C: Reviewer Agent
+
+**Role:** Academic Peer Reviewer
+**Goal:** Validate the draft against academic standards and the PRD requirements checklist.
+
+**Checklist:**
+- [ ] Cover sheet present and complete
+- [ ] Table of Contents present
+- [ ] Length ≥ 15 pages (estimate from word count)
+- [ ] At least one image/diagram
+- [ ] At least one graph/chart
+- [ ] At least one comparison table
+- [ ] At least one mathematical formula
+- [ ] Bibliography in BibTeX format with ≥ 5 sources
+- [ ] Professional academic English throughout
+- [ ] All sections logically connected
+
+**Output:** Annotated feedback written back into `output/paper.md` if corrections needed, then signals approval.
+
+---
+
+## Step D: LaTeX + PDF Compiler
+
+**Role:** Document Engineer
+**Goal:** Convert the approved Markdown to LaTeX and compile to PDF.
+
+**Sub-steps:**
+1. Convert `output/paper.md` → `output/paper.tex`
+   - Apply `article` document class
+   - Include cover page (`\maketitle` with course metadata)
+   - Generate Table of Contents (`\tableofcontents`)
+   - Embed images (`\includegraphics`)
+   - Render table (`tabular` or `booktabs`)
+   - Render formula (`equation` or `align`)
+   - Link bibliography (`\bibliography{references}`)
+2. Compile `paper.tex` → `output/paper.pdf` (via `pdflatex` or `xelatex`)
+
+---
+
+## Execution Rules
+
+- Each step is **strictly sequential** — the next step starts only after the previous step's output is validated.
+- CrewAI `Process.sequential` enforces the order.
+- Each agent writes its output to a file before the next agent reads it.
+- The pipeline is defined in `src/main.py`.
