@@ -114,5 +114,6 @@ Required sections and elements:
 | Writing Task | `src/tasks.py` | ✅ Implemented |
 | Review Task | `src/tasks.py` | ✅ Implemented |
 | Crew orchestration | `src/main.py` | ✅ Implemented |
+| Environment setup | `requirements.txt`, `.env.example` | ✅ Implemented |
 | LaTeX conversion | `src/main.py` / Step D | 🔲 Pending |
 | PDF compilation | Step D | 🔲 Pending |

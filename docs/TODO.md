@@ -41,11 +41,15 @@
   - Loads API keys from `.env` via `python-dotenv`
   - Writes final result to `output/crew_result.md`
 - [x] Wire tasks into a sequential Crew (`Process.sequential`)
-- [ ] **Set up Python environment and install dependencies** ← next pending task
-  - `python -m venv .venv`
-  - `pip install crewai crewai-tools python-dotenv`
-  - Create `requirements.txt`
-  - Configure `.env` with API key
+- [x] **Set up Python environment and install dependencies**
+  - Created `requirements.txt` (crewai, crewai-tools, openai, anthropic, langchain, python-dotenv, pypdf)
+  - Created `.env.example` with placeholders for all required API keys
+  - Copy `.env.example` → `.env` and fill in your keys before running
+- [ ] **First execution and testing** ← next pending task
+  - `python -m venv .venv && .venv\Scripts\activate`
+  - `pip install -r requirements.txt`
+  - Copy `.env.example` to `.env` and set `OPENAI_API_KEY`
+  - Run `python src/main.py` and verify all output files are generated
 - [ ] Test pipeline on a short sample topic
 - [ ] Run full pipeline: LangGraph vs CrewAI paper
 - [ ] Verify all PRD requirements met in output PDF

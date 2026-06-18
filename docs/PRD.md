@@ -114,3 +114,21 @@ Implemented in `src/main.py`. Assembles all agents and tasks into a single CrewA
 | **Output files** | `output/research_notes.md`, `output/paper.md`, `output/references.bib`, `output/crew_result.md` |
 | **Entry point** | `python src/main.py` |
 | **Status** | ✅ Implemented |
+
+---
+
+## Environment Setup
+
+| File | Purpose | Status |
+|---|---|---|
+| `requirements.txt` | All Python dependencies (crewai, openai, langchain, python-dotenv, pypdf) | ✅ Created |
+| `.env.example` | Placeholder template for API keys — copy to `.env` before running | ✅ Created |
+| `.env` | Your actual API keys — **never commit this file** (covered by `.gitignore`) | 🔲 User must create |
+
+**To install dependencies:**
+```bash
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+cp .env.example .env          # then fill in your API keys
+```
