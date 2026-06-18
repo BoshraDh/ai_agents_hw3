@@ -35,12 +35,17 @@
 ## Phase 3: Implement Sequential Chain
 
 - [x] Create Task for each agent stage with clear expected_output (`src/tasks.py`)
-- [ ] **Implement `src/main.py` and Crew orchestration** ← next pending task
-  - Assemble Crew with `Process.sequential`
-  - Load agents and tasks from `agents.py` / `tasks.py`
-  - Add `.env` loading for API keys
-  - Add Compiler agent (Step D: Markdown → LaTeX → PDF)
-- [ ] Wire tasks into a sequential Crew (`Process.sequential`)
+- [x] **Implement `src/main.py` and Crew orchestration** (`src/main.py`)
+  - Assembles Crew with `Process.sequential`
+  - Loads agents and tasks from `agents.py` / `tasks.py`
+  - Loads API keys from `.env` via `python-dotenv`
+  - Writes final result to `output/crew_result.md`
+- [x] Wire tasks into a sequential Crew (`Process.sequential`)
+- [ ] **Set up Python environment and install dependencies** ← next pending task
+  - `python -m venv .venv`
+  - `pip install crewai crewai-tools python-dotenv`
+  - Create `requirements.txt`
+  - Configure `.env` with API key
 - [ ] Test pipeline on a short sample topic
 - [ ] Run full pipeline: LangGraph vs CrewAI paper
 - [ ] Verify all PRD requirements met in output PDF

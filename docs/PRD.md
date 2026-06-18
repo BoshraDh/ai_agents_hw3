@@ -99,3 +99,18 @@ The pipeline is executed by three CrewAI agents defined in `src/agents.py`.
 | **Goal** | Validate the paper draft against the PRD checklist: cover sheet, TOC, length ≥ 15 pages, image, graph, table, formula, and bibliography ≥ 5 sources. Return actionable feedback for any deficiency, or approve for LaTeX conversion. |
 | **Backstory** | A rigorous peer reviewer with experience at top-tier AI conferences. Checks both content quality and structural completeness; never approves a paper missing a required element. |
 | **Approval signal** | Appends `## REVIEWER APPROVAL: APPROVED FOR LATEX CONVERSION` to `output/paper.md` |
+
+---
+
+## Crew Orchestration
+
+Implemented in `src/main.py`. Assembles all agents and tasks into a single CrewAI pipeline.
+
+| Field | Value |
+|---|---|
+| **File** | `src/main.py` |
+| **Process** | `Process.sequential` — Researcher → Writer → Reviewer |
+| **API key loading** | `python-dotenv` reads `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` from `.env` |
+| **Output files** | `output/research_notes.md`, `output/paper.md`, `output/references.bib`, `output/crew_result.md` |
+| **Entry point** | `python src/main.py` |
+| **Status** | ✅ Implemented |

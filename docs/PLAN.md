@@ -113,6 +113,6 @@ Required sections and elements:
 | Research Task | `src/tasks.py` | ✅ Implemented |
 | Writing Task | `src/tasks.py` | ✅ Implemented |
 | Review Task | `src/tasks.py` | ✅ Implemented |
-| Crew orchestration | `src/main.py` | 🔲 Pending |
+| Crew orchestration | `src/main.py` | ✅ Implemented |
 | LaTeX conversion | `src/main.py` / Step D | 🔲 Pending |
 | PDF compilation | Step D | 🔲 Pending |
