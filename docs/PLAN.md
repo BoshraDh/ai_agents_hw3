@@ -100,3 +100,19 @@ Required sections and elements:
 - CrewAI `Process.sequential` enforces the order.
 - Each agent writes its output to a file before the next agent reads it.
 - The pipeline is defined in `src/main.py`.
+
+---
+
+## Implementation Status
+
+| Component | File | Status |
+|---|---|---|
+| Researcher Agent | `src/agents.py` | ✅ Implemented |
+| Writer Agent | `src/agents.py` | ✅ Implemented |
+| Reviewer Agent | `src/agents.py` | ✅ Implemented |
+| Research Task | `src/tasks.py` | ✅ Implemented |
+| Writing Task | `src/tasks.py` | ✅ Implemented |
+| Review Task | `src/tasks.py` | ✅ Implemented |
+| Crew orchestration | `src/main.py` | 🔲 Pending |
+| LaTeX conversion | `src/main.py` / Step D | 🔲 Pending |
+| PDF compilation | Step D | 🔲 Pending |

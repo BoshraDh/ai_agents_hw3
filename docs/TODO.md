@@ -15,28 +15,32 @@
 
 ## Phase 2: Define Agents
 
-- [ ] Define **Researcher Agent**
+- [x] Define **Researcher Agent** (`src/agents.py`)
   - role: "Senior AI Research Analyst"
   - goal: gather and synthesize LangGraph vs CrewAI data
   - tools: WebSearch, FileWrite
-- [ ] Define **Writer Agent**
+- [x] Define **Writer Agent** (`src/agents.py`)
   - role: "Academic Technical Writer"
   - goal: produce full Markdown paper with all required elements
   - tools: FileWrite
-- [ ] Define **Reviewer Agent**
+- [x] Define **Reviewer Agent** (`src/agents.py`)
   - role: "Academic Peer Reviewer"
   - goal: validate paper against PRD checklist
   - tools: FileRead, FileWrite
-- [ ] Define **Compiler Agent**
+- [ ] Define **Compiler Agent** (`src/main.py` / Step D)
   - role: "Document Engineer"
   - goal: convert Markdown → LaTeX → PDF
   - tools: FileRead, FileWrite, BashTool
 
 ## Phase 3: Implement Sequential Chain
 
-- [ ] Create Task for each agent stage with clear expected_output
+- [x] Create Task for each agent stage with clear expected_output (`src/tasks.py`)
+- [ ] **Implement `src/main.py` and Crew orchestration** ← next pending task
+  - Assemble Crew with `Process.sequential`
+  - Load agents and tasks from `agents.py` / `tasks.py`
+  - Add `.env` loading for API keys
+  - Add Compiler agent (Step D: Markdown → LaTeX → PDF)
 - [ ] Wire tasks into a sequential Crew (`Process.sequential`)
-- [ ] Implement `src/main.py` entry point
 - [ ] Test pipeline on a short sample topic
 - [ ] Run full pipeline: LangGraph vs CrewAI paper
 - [ ] Verify all PRD requirements met in output PDF

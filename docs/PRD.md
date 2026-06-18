@@ -66,3 +66,36 @@ Produce a professional academic paper (15–25 pages) in English comparing LangG
 2. `output/paper.tex` — LaTeX-formatted version with proper academic structure
 3. `output/paper.pdf` — Final compiled PDF
 4. `output/references.bib` — BibTeX bibliography file
+
+---
+
+## Agent Definitions
+
+The pipeline is executed by three CrewAI agents defined in `src/agents.py`.
+
+### Researcher Agent
+
+| Field | Value |
+|---|---|
+| **Role** | Senior AI Research Analyst |
+| **Goal** | Gather and synthesize comprehensive data on LangGraph and CrewAI: architecture, API, tooling, performance, use cases. Produce structured notes, a comparison table, graph data, at least one mathematical formula, and five BibTeX citations. |
+| **Backstory** | A seasoned AI researcher with deep expertise in multi-agent systems and LLM orchestration. Reviews benchmarks and documentation with precision; always backs claims with sources. |
+| **Output file** | `output/research_notes.md` |
+
+### Writer Agent
+
+| Field | Value |
+|---|---|
+| **Role** | Academic Technical Writer |
+| **Goal** | Transform research notes into a complete 15–25 page academic paper in English, including cover page, table of contents, all body sections, image placeholder, comparison graph, structured table, mathematical formula, and BibTeX bibliography. |
+| **Backstory** | An experienced academic writer with numerous conference papers and journal articles in AI. Maintains formal tone, structures arguments rigorously, and never declares a draft complete until every required element is present. |
+| **Output files** | `output/paper.md`, `output/references.bib` |
+
+### Reviewer Agent
+
+| Field | Value |
+|---|---|
+| **Role** | Academic Peer Reviewer |
+| **Goal** | Validate the paper draft against the PRD checklist: cover sheet, TOC, length ≥ 15 pages, image, graph, table, formula, and bibliography ≥ 5 sources. Return actionable feedback for any deficiency, or approve for LaTeX conversion. |
+| **Backstory** | A rigorous peer reviewer with experience at top-tier AI conferences. Checks both content quality and structural completeness; never approves a paper missing a required element. |
+| **Approval signal** | Appends `## REVIEWER APPROVAL: APPROVED FOR LATEX CONVERSION` to `output/paper.md` |
