@@ -3,7 +3,7 @@ __pycache__/
 .env
 .venv/
 
-# LaTeX build artifacts
+# LaTeX build artifacts (output/)
 output/*.aux
 output/*.log
 output/*.bbl
@@ -13,3 +13,14 @@ output/*.toc
 output/*.fls
 output/*.fdb_latexmk
 output/*.synctex.gz
+
+# LaTeX build artifacts (latex/)
+latex/*.aux
+latex/*.log
+latex/*.bbl
+latex/*.blg
+latex/*.out
+latex/*.toc
+latex/*.fls
+latex/*.fdb_latexmk
+latex/*.synctex.gz
