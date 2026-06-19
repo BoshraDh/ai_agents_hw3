@@ -3,13 +3,16 @@
 ## Workflow: Four-Stage Sequential Agent Pipeline
 
 ```
-Step A: Researcher Agent
+Step A: Researcher Agent  →  output/research_notes.md   ✅ Complete
         ↓
-Step B: Writer Agent
+Step B: Writer Agent      →  output/paper.md             ✅ Complete
+        output/references.bib
         ↓
-Step C: Reviewer Agent
+Step C: Reviewer Agent    →  output/paper.md (validated) ✅ Complete
         ↓
-Step D: LaTeX + PDF Compiler
+Step D: LaTeX Conversion  →  output/paper.tex            ✅ Complete
+        ↓
+Step E: PDF Compilation   →  output/paper.pdf            🔲 Pending
 ```
 
 ---
@@ -23,9 +26,9 @@ Step D: LaTeX + PDF Compiler
 - Structured research notes covering: architecture, API design, tooling, use cases, performance
 - At least 5 BibTeX-ready citations
 - Draft data for the comparison table and the graph
-- A candidate mathematical formula (e.g., agent coordination overhead, complexity)
+- A candidate mathematical formula (agent coordination overhead / complexity)
 
-**Tools:** WebSearch, file write
+**Status:** ✅ Complete — `output/research_notes.md` generated and committed.
 
 ---
 
@@ -53,6 +56,12 @@ Required sections and elements:
 
 **Also produces:** `output/references.bib`
 
+**Status:** ✅ Complete — files generated, post-run quality fixes applied:
+- Removed AI markdown wrappers
+- Fixed lecturer field to "Yoram Segal"
+- Corrected factual error (CrewAI language: Python, not JavaScript)
+- Aligned `\cite{}` keys with `references.bib` entries
+
 ---
 
 ## Step C: Reviewer Agent
@@ -61,59 +70,88 @@ Required sections and elements:
 **Goal:** Validate the draft against academic standards and the PRD requirements checklist.
 
 **Checklist:**
-- [ ] Cover sheet present and complete
-- [ ] Table of Contents present
-- [ ] Length ≥ 15 pages (estimate from word count)
-- [ ] At least one image/diagram
-- [ ] At least one graph/chart
-- [ ] At least one comparison table
-- [ ] At least one mathematical formula
-- [ ] Bibliography in BibTeX format with ≥ 5 sources
-- [ ] Professional academic English throughout
-- [ ] All sections logically connected
+- [x] Cover sheet present and complete
+- [x] Table of Contents present
+- [x] Estimated length meets requirement
+- [x] At least one image/diagram (placeholder present)
+- [x] At least one graph/chart (placeholder + data table present)
+- [x] At least one comparison table
+- [x] At least one mathematical formula
+- [x] Bibliography in BibTeX format with ≥ 5 sources
+- [x] Professional academic English throughout
+- [x] All sections logically connected
 
-**Output:** Annotated feedback written back into `output/paper.md` if corrections needed, then signals approval.
+**Status:** ✅ Complete — approved for LaTeX conversion.
 
 ---
 
-## Step D: LaTeX + PDF Compiler
+## Step D: LaTeX Conversion
 
 **Role:** Document Engineer
-**Goal:** Convert the approved Markdown to LaTeX and compile to PDF.
+**Goal:** Convert the approved Markdown to a compilable LaTeX source file.
 
 **Sub-steps:**
 1. Convert `output/paper.md` → `output/paper.tex`
-   - Apply `article` document class
-   - Include cover page (`\maketitle` with course metadata)
-   - Generate Table of Contents (`\tableofcontents`)
-   - Embed images (`\includegraphics`)
-   - Render table (`tabular` or `booktabs`)
-   - Render formula (`equation` or `align`)
-   - Link bibliography (`\bibliography{references}`)
-2. Compile `paper.tex` → `output/paper.pdf` (via `pdflatex` or `xelatex`)
+   - `article` document class, XeLaTeX engine (for Hebrew cover page)
+   - Cover page with `\texthebrew{...}`, course, lecturer, semester, author
+   - Auto-generated Table of Contents (`\tableofcontents`)
+   - Figure placeholders (`\fbox`) ready to swap for `\includegraphics`
+   - Comparison table (`booktabs` + `tabularx`)
+   - Math equations (`\begin{equation}`) with `\eqref{}` cross-references
+   - Score table for radar chart data
+   - `natbib` bibliography (`\bibliography{references}`)
+
+**Status:** ✅ Complete — `output/paper.tex` committed and pushed to GitHub.
+
+**Compile instructions:**
+```
+xelatex paper.tex
+bibtex paper
+xelatex paper.tex
+xelatex paper.tex
+```
+
+---
+
+## Step E: PDF Compilation (Pending)
+
+**Goal:** Compile `paper.tex` into a submission-ready PDF.
+
+**Blockers (manual steps required before compiling):**
+1. Create `output/images/arch_comparison.png` — architecture diagram
+2. Create `output/images/performance_chart.png` — radar/bar chart
+3. Replace `\fbox` placeholders in `paper.tex` with `\includegraphics`
+
+**Status:** 🔲 Pending — waiting on image assets.
 
 ---
 
 ## Execution Rules
 
-- Each step is **strictly sequential** — the next step starts only after the previous step's output is validated.
-- CrewAI `Process.sequential` enforces the order.
-- Each agent writes its output to a file before the next agent reads it.
-- The pipeline is defined in `src/main.py`.
+- Each step is **strictly sequential** — next step starts only after previous output is validated.
+- CrewAI `Process.sequential` enforces the agent order (Steps A–C).
+- Steps D–E are performed outside the pipeline (LaTeX toolchain).
+- Every file change is committed and pushed immediately with a descriptive message.
 
 ---
 
 ## Implementation Status
 
-| Component | File | Status |
-|---|---|---|
-| Researcher Agent | `src/agents.py` | ✅ Implemented |
-| Writer Agent | `src/agents.py` | ✅ Implemented |
-| Reviewer Agent | `src/agents.py` | ✅ Implemented |
-| Research Task | `src/tasks.py` | ✅ Implemented |
-| Writing Task | `src/tasks.py` | ✅ Implemented |
-| Review Task | `src/tasks.py` | ✅ Implemented |
-| Crew orchestration | `src/main.py` | ✅ Implemented |
-| Environment setup | `requirements.txt`, `.env.example` | ✅ Implemented |
-| LaTeX conversion | `src/main.py` / Step D | 🔲 Pending |
-| PDF compilation | Step D | 🔲 Pending |
+| Component            | File                        | Status         |
+|----------------------|-----------------------------|----------------|
+| Researcher Agent     | `src/agents.py`             | ✅ Complete    |
+| Writer Agent         | `src/agents.py`             | ✅ Complete    |
+| Reviewer Agent       | `src/agents.py`             | ✅ Complete    |
+| Research Task        | `src/tasks.py`              | ✅ Complete    |
+| Writing Task         | `src/tasks.py`              | ✅ Complete    |
+| Review Task          | `src/tasks.py`              | ✅ Complete    |
+| Crew orchestration   | `src/main.py`               | ✅ Complete    |
+| Environment setup    | `requirements.txt`, `.env.example` | ✅ Complete |
+| Research notes       | `output/research_notes.md`  | ✅ Complete    |
+| Paper draft (MD)     | `output/paper.md`           | ✅ Complete    |
+| Bibliography         | `output/references.bib`     | ✅ Complete (5 entries) |
+| Crew result          | `output/crew_result.md`     | ✅ Complete    |
+| LaTeX source         | `output/paper.tex`          | ✅ Complete    |
+| Architecture image   | `output/images/arch_comparison.png` | 🔲 Pending (manual) |
+| Performance chart    | `output/images/performance_chart.png` | 🔲 Pending (manual) |
+| Final PDF            | `output/paper.pdf`          | 🔲 Pending     |

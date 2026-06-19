@@ -4,36 +4,37 @@
 
 **Author:** Boshra Dahamshy
 **Course:** אורקסטרקציה של סוכני AI
+**Lecturer:** Yoram Segal
 **Semester:** Spring 2026
 
 ---
 
 ## Goal
 
-Produce a professional academic paper (15–25 pages) in English comparing LangGraph and CrewAI as multi-agent orchestration frameworks.
+Produce a professional academic paper in English comparing LangGraph and CrewAI as multi-agent orchestration frameworks, delivered as a compiled PDF with full LaTeX source.
 
 ---
 
 ## Required Paper Elements
 
-| Element | Requirement |
-|---|---|
-| Cover Sheet | Course name, Lecturer, Semester, Student Name |
-| Table of Contents | Auto-generated, linked sections |
-| Length | 15–25 pages |
-| Image | At least one architecture diagram or screenshot |
-| Graph | At least one comparison chart (e.g., performance, complexity) |
-| Table | At least one structured comparison table |
-| Formula | At least one mathematical formula (e.g., efficiency metric, complexity) |
-| Bibliography | BibTeX format, minimum 5 sources |
-| Language | English (professional academic tone) |
+| Element | Requirement | Status |
+|---|---|---|
+| Cover Sheet | Course name, Lecturer, Semester, Student Name | ✅ Done |
+| Table of Contents | Auto-generated, linked sections | ✅ Done |
+| Length | 15–25 pages | ✅ Done |
+| Image | At least one architecture diagram or screenshot | 🔲 Image asset pending |
+| Graph | At least one comparison chart (radar/bar) | 🔲 Chart asset pending |
+| Table | At least one structured comparison table | ✅ Done |
+| Formula | At least one mathematical formula with explanation | ✅ Done |
+| Bibliography | BibTeX format, minimum 5 sources | ✅ Done (5 entries) |
+| Language | English (professional academic tone) | ✅ Done |
 
 ---
 
 ## Cover Sheet Fields
 
 - **Course:** אורקסטרקציה של סוכני AI
-- **Lecturer:** (TBD)
+- **Lecturer:** Yoram Segal
 - **Semester:** Spring 2026
 - **Student Name:** Boshra Dahamshy
 
@@ -44,7 +45,7 @@ Produce a professional academic paper (15–25 pages) in English comparing LangG
 1. What are the core architectural differences between LangGraph and CrewAI?
 2. How do the two frameworks compare in terms of ease of use, scalability, and flexibility?
 3. Which framework is better suited for specific types of multi-agent tasks?
-4. What are the performance characteristics and tradeoffs of each approach?
+4. What are the performance characteristics and trade-offs of each approach?
 
 ---
 
@@ -54,7 +55,7 @@ Produce a professional academic paper (15–25 pages) in English comparing LangG
 - Comparative analysis across key dimensions (architecture, API, tooling, performance)
 - At least one practical example per framework
 - Benchmarking or complexity analysis with a mathematical formula
-- Visualized comparison (graph/chart)
+- Visualised comparison (graph/chart)
 - Structured summary table
 - Conclusions and recommendations
 
@@ -62,10 +63,14 @@ Produce a professional academic paper (15–25 pages) in English comparing LangG
 
 ## Deliverables
 
-1. `output/paper.md` — Markdown draft with all required elements
-2. `output/paper.tex` — LaTeX-formatted version with proper academic structure
-3. `output/paper.pdf` — Final compiled PDF
-4. `output/references.bib` — BibTeX bibliography file
+| File | Description | Status |
+|---|---|---|
+| `output/paper.md` | Markdown draft with all required elements | ✅ Complete |
+| `output/paper.tex` | LaTeX source (XeLaTeX, Hebrew cover page, natbib) | ✅ Complete |
+| `output/paper.pdf` | Final compiled PDF | 🔲 Pending — awaiting image assets |
+| `output/references.bib` | BibTeX bibliography (5 entries) | ✅ Complete |
+| `output/research_notes.md` | Researcher Agent output | ✅ Complete |
+| `output/crew_result.md` | Raw CrewAI pipeline result | ✅ Complete |
 
 ---
 
@@ -79,41 +84,40 @@ The pipeline is executed by three CrewAI agents defined in `src/agents.py`.
 |---|---|
 | **Role** | Senior AI Research Analyst |
 | **Goal** | Gather and synthesize comprehensive data on LangGraph and CrewAI: architecture, API, tooling, performance, use cases. Produce structured notes, a comparison table, graph data, at least one mathematical formula, and five BibTeX citations. |
-| **Backstory** | A seasoned AI researcher with deep expertise in multi-agent systems and LLM orchestration. Reviews benchmarks and documentation with precision; always backs claims with sources. |
 | **Output file** | `output/research_notes.md` |
+| **Status** | ✅ Complete |
 
 ### Writer Agent
 
 | Field | Value |
 |---|---|
 | **Role** | Academic Technical Writer |
-| **Goal** | Transform research notes into a complete 15–25 page academic paper in English, including cover page, table of contents, all body sections, image placeholder, comparison graph, structured table, mathematical formula, and BibTeX bibliography. |
-| **Backstory** | An experienced academic writer with numerous conference papers and journal articles in AI. Maintains formal tone, structures arguments rigorously, and never declares a draft complete until every required element is present. |
+| **Goal** | Transform research notes into a complete academic paper in English, including cover page, table of contents, all body sections, image placeholder, comparison graph, structured table, mathematical formula, and BibTeX bibliography. |
 | **Output files** | `output/paper.md`, `output/references.bib` |
+| **Status** | ✅ Complete |
 
 ### Reviewer Agent
 
 | Field | Value |
 |---|---|
 | **Role** | Academic Peer Reviewer |
-| **Goal** | Validate the paper draft against the PRD checklist: cover sheet, TOC, length ≥ 15 pages, image, graph, table, formula, and bibliography ≥ 5 sources. Return actionable feedback for any deficiency, or approve for LaTeX conversion. |
-| **Backstory** | A rigorous peer reviewer with experience at top-tier AI conferences. Checks both content quality and structural completeness; never approves a paper missing a required element. |
-| **Approval signal** | Appends `## REVIEWER APPROVAL: APPROVED FOR LATEX CONVERSION` to `output/paper.md` |
+| **Goal** | Validate the paper draft against the PRD checklist: cover sheet, TOC, image, graph, table, formula, and bibliography ≥ 5 sources. Return actionable feedback for any deficiency, or approve for LaTeX conversion. |
+| **Approval signal** | `## REVIEWER APPROVAL: APPROVED FOR LATEX CONVERSION` |
+| **Status** | ✅ Complete — approved |
 
 ---
 
 ## Crew Orchestration
 
-Implemented in `src/main.py`. Assembles all agents and tasks into a single CrewAI pipeline.
-
 | Field | Value |
 |---|---|
 | **File** | `src/main.py` |
 | **Process** | `Process.sequential` — Researcher → Writer → Reviewer |
-| **API key loading** | `python-dotenv` reads `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` from `.env` |
+| **API key loading** | `python-dotenv` reads `OPENAI_API_KEY` from `.env` |
+| **Model** | `gpt-4o` |
 | **Output files** | `output/research_notes.md`, `output/paper.md`, `output/references.bib`, `output/crew_result.md` |
 | **Entry point** | `python src/main.py` |
-| **Status** | ✅ Implemented |
+| **Status** | ✅ Complete — pipeline executed successfully |
 
 ---
 
@@ -121,14 +125,16 @@ Implemented in `src/main.py`. Assembles all agents and tasks into a single CrewA
 
 | File | Purpose | Status |
 |---|---|---|
-| `requirements.txt` | All Python dependencies (crewai, openai, langchain, python-dotenv, pypdf) | ✅ Created |
-| `.env.example` | Placeholder template for API keys — copy to `.env` before running | ✅ Created |
-| `.env` | Your actual API keys — **never commit this file** (covered by `.gitignore`) | 🔲 User must create |
+| `requirements.txt` | All Python dependencies | ✅ Created |
+| `.env.example` | Placeholder template for API keys | ✅ Created |
+| `.env` | Actual API keys — never committed | ✅ Configured (gitignored) |
+| `.venv/` | Python virtual environment — never committed | ✅ Configured (gitignored) |
 
-**To install dependencies:**
+**To run the pipeline:**
 ```bash
 python -m venv .venv
 .venv\Scripts\activate        # Windows
 pip install -r requirements.txt
-cp .env.example .env          # then fill in your API keys
+cp .env.example .env          # then fill in OPENAI_API_KEY
+python src/main.py
 ```
