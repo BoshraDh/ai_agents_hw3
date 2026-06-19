@@ -22,8 +22,8 @@ Produce a professional academic paper in English comparing LangGraph and CrewAI 
 | Cover Sheet | Course name, Lecturer, Semester, Student Name | ✅ Done |
 | Table of Contents | Auto-generated, linked sections | ✅ Done |
 | Length | 15–25 pages | ✅ Done |
-| Image | At least one architecture diagram or screenshot | 🔲 Image asset pending |
-| Graph | At least one comparison chart (radar/bar) | 🔲 Chart asset pending |
+| Image | At least one architecture diagram or screenshot | ✅ Done (`arch_comparison.png`) |
+| Graph | At least one comparison chart (radar/bar) | ✅ Done (`performance_chart.png`) |
 | Table | At least one structured comparison table | ✅ Done |
 | Formula | At least one mathematical formula with explanation | ✅ Done |
 | Bibliography | BibTeX format, minimum 5 sources | ✅ Done (5 entries) |

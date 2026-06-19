@@ -93,5 +93,5 @@ xelatex paper.tex
 | `output/paper.md` — Markdown paper | ✅ Complete |
 | `output/references.bib` — 5 BibTeX entries | ✅ Complete |
 | `output/paper.tex` — LaTeX source | ✅ Complete |
-| `output/images/` — diagram & chart assets | 🔲 Manual step |
+| `output/images/` — diagram & chart assets | ✅ Complete (`src/generate_images.py`) |
 | `output/paper.pdf` — final compiled PDF | 🔲 Pending |
