@@ -148,7 +148,7 @@ xelatex paper.tex
 | Crew orchestration   | `src/main.py`               | ✅ Complete    |
 | Environment setup    | `requirements.txt`, `.env.example` | ✅ Complete |
 | Research notes       | `output/research_notes.md`  | ✅ Complete    |
-| Paper draft (MD)     | `output/paper.md`           | ✅ Complete    |
+| Paper draft (MD)     | `output/paper.md`           | ✅ Complete (expanded: 5,033 words, 12 sections, real-world examples) |
 | Bibliography         | `output/references.bib`     | ✅ Complete (5 entries) |
 | Crew result          | `output/crew_result.md`     | ✅ Complete    |
 | LaTeX source         | `output/paper.tex`          | ✅ Complete    |

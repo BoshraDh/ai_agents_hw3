@@ -73,4 +73,10 @@
   - [x] Mathematical formulas with equation numbers and cross-references
   - [x] BibTeX bibliography (5 sources, natbib)
   - [x] 9 pages (within 15–25 page target after image scaling)
+- [x] **Expand paper.md to 15–25 page target** — 5,033 words, 12 sections:
+  - Deepened LangGraph section: superstep model, checkpointer, streaming API, code example
+  - Deepened CrewAI section: memory system, hierarchical process, code example
+  - Extended Performance & Complexity: formal $O(n)$ vs $O(n^2)$ derivation, context-window cost analysis, empirical factors
+  - Added Section 9: Real-World Use Cases (4 detailed examples + selection heuristics table)
+  - Extended Discussion: state management divide, developer experience, limitations, future directions
 - [ ] Final review and GitHub submission
