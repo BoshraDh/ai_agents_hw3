@@ -25,19 +25,24 @@ research_notes.md     paper.md         (validates)
 ```
 ai_agents_hw3/
 ├── src/
-│   ├── main.py          # Crew orchestration entry point
-│   ├── agents.py        # Agent definitions (Researcher, Writer, Reviewer)
-│   └── tasks.py         # Task definitions
+│   ├── main.py              # Crew orchestration entry point
+│   ├── agents.py            # Agent definitions (Researcher, Writer, Reviewer)
+│   ├── tasks.py             # Task definitions
+│   └── generate_images.py   # Generates arch_comparison.png & performance_chart.png
 ├── output/
-│   ├── paper.md         # Markdown paper draft
-│   ├── paper.tex        # LaTeX source (XeLaTeX, ready to compile)
-│   ├── references.bib   # BibTeX bibliography (5 entries)
-│   ├── research_notes.md # Researcher Agent output
-│   └── crew_result.md   # Raw CrewAI pipeline result
+│   ├── paper.md             # Markdown paper draft (5,033 words, 12 sections)
+│   ├── paper.tex            # LaTeX source (pdflatex, ready to compile)
+│   ├── paper.pdf            # Final compiled PDF (15 pages, 514 KB)
+│   ├── references.bib       # BibTeX bibliography (5 entries)
+│   ├── research_notes.md    # Researcher Agent output
+│   ├── crew_result.md       # Raw CrewAI pipeline result
+│   └── images/
+│       ├── arch_comparison.png    # Architecture diagram (LangGraph DAG vs CrewAI)
+│       └── performance_chart.png  # Radar chart (6-dimension comparison)
 ├── docs/
-│   ├── PRD.md           # Product requirements
-│   ├── PLAN.md          # Implementation plan & status
-│   └── TODO.md          # Task checklist
+│   ├── PRD.md               # Product requirements
+│   ├── PLAN.md              # Implementation plan & status
+│   └── TODO.md              # Task checklist
 ├── requirements.txt
 ├── .env.example
 └── .gitignore
@@ -63,25 +68,27 @@ copy .env.example .env
 
 # 4. Run the pipeline
 python src/main.py
+
+# 5. (Optional) Regenerate figures
+python src/generate_images.py
 ```
 
 ---
 
 ## Compiling the PDF
 
-Requires **XeLaTeX** (included in MikTeX):
+Requires **pdflatex** (included in MiKTeX / TeX Live):
 
 ```bash
 cd output
-xelatex paper.tex
+pdflatex paper.tex
 bibtex paper
-xelatex paper.tex
-xelatex paper.tex
+pdflatex paper.tex
+pdflatex paper.tex
 ```
 
-> **Note:** Before compiling, place `images/arch_comparison.png` and
-> `images/performance_chart.png` in the `output/` folder and replace
-> the `\fbox` placeholders in `paper.tex` with `\includegraphics`.
+> **Note:** `output/paper.pdf` is already compiled and committed (15 pages, 514 KB).
+> The images in `output/images/` are also committed — no manual steps required.
 
 ---
 
@@ -90,8 +97,8 @@ xelatex paper.tex
 | Phase | Status |
 |---|---|
 | Agent pipeline (Researcher → Writer → Reviewer) | ✅ Complete |
-| `output/paper.md` — Markdown paper | ✅ Complete |
+| `output/paper.md` — Markdown paper (5,033 words) | ✅ Complete |
 | `output/references.bib` — 5 BibTeX entries | ✅ Complete |
-| `output/paper.tex` — LaTeX source | ✅ Complete |
 | `output/images/` — diagram & chart assets | ✅ Complete (`src/generate_images.py`) |
-| `output/paper.pdf` — final compiled PDF | ✅ Complete (9 pages) |
+| `output/paper.tex` — LaTeX source (pdflatex) | ✅ Complete |
+| `output/paper.pdf` — final compiled PDF | ✅ Complete (**15 pages, 514 KB**) |

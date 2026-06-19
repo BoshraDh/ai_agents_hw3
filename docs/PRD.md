@@ -66,8 +66,8 @@ Produce a professional academic paper in English comparing LangGraph and CrewAI 
 | File | Description | Status |
 |---|---|---|
 | `output/paper.md` | Markdown draft with all required elements | ✅ Complete (5,033 words, expanded to 15–25 page target) |
-| `output/paper.tex` | LaTeX source (XeLaTeX, Hebrew cover page, natbib) | ✅ Complete |
-| `output/paper.pdf` | Final compiled PDF | ✅ Complete (9 pages, 550 KB) |
+| `output/paper.tex` | LaTeX source (pdflatex, natbib, fancyvrb code blocks) | ✅ Complete |
+| `output/paper.pdf` | Final compiled PDF | ✅ Complete (**15 pages, 514 KB**) |
 | `output/references.bib` | BibTeX bibliography (5 entries) | ✅ Complete |
 | `output/research_notes.md` | Researcher Agent output | ✅ Complete |
 | `output/crew_result.md` | Raw CrewAI pipeline result | ✅ Complete |
