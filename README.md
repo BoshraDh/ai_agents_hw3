@@ -94,4 +94,4 @@ xelatex paper.tex
 | `output/references.bib` — 5 BibTeX entries | ✅ Complete |
 | `output/paper.tex` — LaTeX source | ✅ Complete |
 | `output/images/` — diagram & chart assets | ✅ Complete (`src/generate_images.py`) |
-| `output/paper.pdf` — final compiled PDF | 🔲 Pending |
+| `output/paper.pdf` — final compiled PDF | ✅ Complete (9 pages) |
